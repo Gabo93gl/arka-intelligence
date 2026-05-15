@@ -18,15 +18,15 @@ const CSS = `
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 .app.dark{
-  --void:#000000;--base:#0A0A0A;--surface:#111111;--elevated:#171717;--hover:#1F1F1F;
-  --border:rgba(255,255,255,0.08);--border-hi:rgba(0,210,200,0.5);
-  --blue:#00D2C8;--blue-dim:rgba(0,210,200,0.1);--blue-glow:rgba(0,210,200,0.18);
+  --void:#01050F;--base:#050B1A;--surface:#080F22;--elevated:#0C1530;--hover:#10193A;
+  --border:rgba(255,255,255,0.055);--border-hi:rgba(59,130,246,0.4);
+  --blue:#3B82F6;--blue-dim:rgba(59,130,246,0.1);--blue-glow:rgba(59,130,246,0.18);
   --gold:#C9A84C;--gold-dim:rgba(201,168,76,0.1);
-  --green:#22C55E;--green-dim:rgba(34,197,94,0.1);
+  --green:#10B981;--green-dim:rgba(16,185,129,0.1);
   --red:#EF4444;--red-dim:rgba(239,68,68,0.1);
-  --amber:#F59E0B;--purple:#A78BFA;
-  --t1:#FFFFFF;--t2:#E5E5E5;--t3:#A3A3A3;--t4:#737373;
-  --shadow:rgba(0,0,0,0.8);--scroll:rgba(255,255,255,0.06);
+  --amber:#F59E0B;--purple:#8B5CF6;
+  --t1:#EDF2FF;--t2:#8BA4CC;--t3:#3D5478;--t4:#1A2A44;
+  --shadow:rgba(0,0,0,0.5);--scroll:rgba(255,255,255,0.07);
 }
 .app.light{
   --void:#EEF2FC;--base:#FFFFFF;--surface:#F7F9FF;--elevated:#EBF0FC;--hover:#E2E9F8;
