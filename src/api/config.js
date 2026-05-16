@@ -48,6 +48,11 @@ export function relayHeaders() {
   return h;
 }
 
+// Relay fetch: llama al relay con auth
+export function relayFetch(path, opts = {}) {
+  return apiFetch(`${RELAY}${path}`, { ...opts, headers: { ...relayHeaders(), ...(opts.headers || {}) } });
+}
+
 // Generic fetch con timeout y error handling
 export async function apiFetch(url, opts = {}, timeoutMs = 15000) {
   const ctrl = new AbortController();
