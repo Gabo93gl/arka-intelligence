@@ -2511,7 +2511,6 @@ function PizzaIndexModal({ onClose }) {
         </div>
       </div>
     </div>
-    </div>
   );
 }
 
@@ -2678,6 +2677,7 @@ function IntelDrawer({ insights, loading, risks, theater, cyber, carriers, onClo
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 }
