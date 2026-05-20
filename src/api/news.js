@@ -1,7 +1,9 @@
 // ============================================================
-//  ARKA — News API (NewsAPI + Guardian + NYT)
+//  ARKA — News API (NewsAPI + Guardian + NYT + GDELT)
+//  NewsAPI y GDELT van por relay (CORS bloqueado en prod).
+//  Guardian y NYT soportan CORS directo desde browser.
 // ============================================================
-import { KEYS, apiFetch } from './config.js';
+import { KEYS, apiFetch, relayFetch } from './config.js';
 
 // Formatea tiempo relativo
 function timeAgo(dateStr) {
@@ -22,17 +24,15 @@ function classifyTag(title = '') {
   return null;
 }
 
-// NewsAPI — noticias generales por query
+// NewsAPI — via relay (CORS bloqueado en producción desde browser)
 async function fromNewsAPI(query, pageSize = 8) {
-  if (!KEYS.newsapi) return [];
   const params = new URLSearchParams({
     q: query,
     pageSize: String(pageSize),
     sortBy: 'publishedAt',
     language: 'en',
-    apiKey: KEYS.newsapi,
   });
-  const data = await apiFetch(`https://newsapi.org/v2/everything?${params}`);
+  const data = await relayFetch(`/newsapi?${params}`);
   return (data.articles || []).map(a => ({
     src: a.source?.name || 'NewsAPI',
     h: a.title,
@@ -42,7 +42,7 @@ async function fromNewsAPI(query, pageSize = 8) {
   }));
 }
 
-// Guardian API — por sección
+// Guardian API — CORS permitido, llamada directa
 async function fromGuardian(section, pageSize = 8) {
   if (!KEYS.guardian) return [];
   const params = new URLSearchParams({
@@ -62,7 +62,7 @@ async function fromGuardian(section, pageSize = 8) {
   }));
 }
 
-// NYT API — por section
+// NYT API — CORS permitido, llamada directa (top stories)
 async function fromNYT(section = 'world') {
   if (!KEYS.nyt) return [];
   const data = await apiFetch(
@@ -77,19 +77,16 @@ async function fromNYT(section = 'world') {
   }));
 }
 
-// GDELT — búsqueda de eventos globales (sin key)
+// GDELT — via relay (evita CORS y rate limits)
 async function fromGDELT(query, maxRecords = 6) {
   const params = new URLSearchParams({
     query,
     mode: 'artlist',
     maxrecords: String(maxRecords),
-    format: 'json',
     timespan: '24h',
     sort: 'hybridrel',
   });
-  const data = await apiFetch(
-    `https://api.gdeltproject.org/api/v2/doc/doc?${params}`
-  );
+  const data = await relayFetch(`/gdelt?${params}`);
   return (data.articles || []).map(a => ({
     src: a.domain || 'GDELT',
     h: a.title,
