@@ -571,6 +571,18 @@ const CHANNELS = [
   { id:"trt",       label:"TRT World",  type:"hls",
     src:"https://tv-trtworld.live.trt.com.tr/master.m3u8",
     ytOpen:"https://www.trtworld.com/watch" },
+  // Bloomberg TV — YouTube live (canal oficial)
+  { id:"bloomberg", label:"Bloomberg",  type:"yt",
+    src:"https://www.youtube.com/embed/live_stream?channel=UCrM7B7SL_g1edFOnmj-SDKg&autoplay=1&mute=1&controls=1&modestbranding=1&rel=0",
+    ytOpen:"https://www.bloomberg.com/live" },
+  // CNBC — YouTube live
+  { id:"cnbc",      label:"CNBC",       type:"yt",
+    src:"https://www.youtube.com/embed/live_stream?channel=UCvJJ_dzjViJCoLf5uKUTwoA&autoplay=1&mute=1&controls=1&modestbranding=1&rel=0",
+    ytOpen:"https://www.cnbc.com/live-tv/" },
+  // Reuters TV — YouTube live
+  { id:"reuters",   label:"Reuters",    type:"yt",
+    src:"https://www.youtube.com/embed/live_stream?channel=UChqUTb7kYRX8-EiaN3XFrSQ&autoplay=1&mute=1&controls=1&modestbranding=1&rel=0",
+    ytOpen:"https://www.reuters.com/video/live/" },
 ];
 
 /* ── PANEL REGISTRY ─────────────────────────────────────────── */
